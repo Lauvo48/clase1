@@ -29,7 +29,7 @@ def show_visualization_tab():
     fig1 = go.Figure()
 
     fig1.add_trace(go.Scatter(
-        x=df_1['a_o'],
+        x=df_1['a_o'].astype(int),
         y=df_1['tasa_matriculaci_n_5_16'],
         name='Tasa de matriculación (5-16)',
         mode='lines+markers',

@@ -96,7 +96,13 @@ def show_transform_tab():
     for col in df.columns:
         if col not in ['departamento', 'municipio', 'c_digo_departamento']:
             df[col] = pd.to_numeric(df[col], errors='coerce')
-    df_clean = df.dropna()
+    if 'a_o' in df.columns:
+        df['a_o'] = df['a_o'].astype('Int64')
+
+    cols_indispensables = ['a_o', 'departamento', 'municipio', 'c_digo_departamento']
+    df_clean = df.dropna(subset=cols_indispensables)
+
+
 
     col1, col2 = st.columns(2)
     col1.metric("Registros originales", len(st.session_state['df_raw']))
